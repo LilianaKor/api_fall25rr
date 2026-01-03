@@ -95,6 +95,20 @@ This test demonstrates:
 
 ---
 
+### Project Philosophy
+
+This repository is intentionally kept simple and educational.
+
+Tests should be easy to read
+
+Architecture should be understandable at a glance
+
+Examples should help quickly bootstrap new API automation projects
+
+No unnecessary abstractions.
+No hidden magic.
+Focus on clarity and reusability.
+
 ## Environment Configuration
 
 Some examples use environment variables.
@@ -106,6 +120,8 @@ BASE_URL=https://simple-books-api.click
 
 If the environment variable is not set, the tests can fall back to
 the base URL defined in Endpoints.
+
+---
 
 How to Run Tests
 
@@ -123,18 +139,5 @@ Run with Allure (optional):
 
 pytest --alluredir=allure-results
 allure serve allure-results
-----
 
-## Project Philosophy
-
-This repository is intentionally kept simple and educational.
-
-Tests should be easy to read
-
-Architecture should be understandable at a glance
-
-Examples should help quickly bootstrap new API automation projects
-
-No unnecessary abstractions.
-No hidden magic.
-Focus on clarity and reusability.
+---
