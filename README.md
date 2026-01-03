@@ -26,16 +26,17 @@ The examples focus on:
 
 ## Project Structure (High Level)
 
-- `data/`
+- `data/`dataclasses
   - API endpoints
   - data generators
   - dataclasses for request payloads
 - `modules/`
   - request body builders
-  - URL helpers
+  - registered_module
 - `utils/`
   - assertions
   - schema validation
+  - logger
 - `tests/`
   - API test examples
   - pytest fixtures
