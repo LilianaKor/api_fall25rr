@@ -123,8 +123,9 @@ Run with Allure (optional):
 
 pytest --alluredir=allure-results
 allure serve allure-results
+----
 
-Project Philosophy
+## Project Philosophy
 
 This repository is intentionally kept simple and educational.
 
@@ -136,4 +137,4 @@ Examples should help quickly bootstrap new API automation projects
 
 No unnecessary abstractions.
 No hidden magic.
-Focus on clarity and reusability
+Focus on clarity and reusability.
