@@ -8,6 +8,7 @@ from utils.schemas.create_orders_schema.request_schema import CreateOrdesRequest
 from utils.schemas.create_orders_schema.response_schema import CreateOrderResponseSchema
 from utils.validate import Validate
 
+
 class TestCreateOrders:
     generator = Generator()
     module = CreateOrderModule()
