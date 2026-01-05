@@ -26,20 +26,20 @@ The examples focus on:
 
 ## Project Structure (High Level)
 
-- `data/`dataclasses
-  - API endpoints
-  - data generators
-  - dataclasses for request payloads
-- `modules/`
-  - request body builders
-  - registered_module
-- `utils/`
-  - assertions
-  - schema validation
-  - logger
-- `tests/`
-  - API test examples
-  - pytest fixtures
+api_fall25rr/
+├── data/
+│   ├── endpoints.py               # API endpoints
+│   └── generator/                 # Test data generators
+├── modules/                       # Modules to prepare request bodies and URLs
+├── tests/
+│   ├── test_registered.py         # Registration API tests
+│   └── test_create_orders.py      # Create orders API tests
+├── utils/
+│   ├── assertions.py              # Assertion helpers
+│   ├── validate.py                # Schema validation helpers
+│   └── schemas/                   # Request/response schemas
+├── requirements.txt               # Python dependencies
+└── README.md
 
 ---
 
