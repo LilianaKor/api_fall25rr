@@ -120,6 +120,24 @@ No unnecessary abstractions.
 No hidden magic.
 Focus on clarity and reusability.
 
+## Run tests with Allure
+
+Generate Allure results:
+
+pytest --alluredir=allure-results
+
+
+Serve the Allure report in your browser:
+
+allure serve allure-results
+
+
+Or generate the report without opening it automatically:
+
+allure generate allure-results -o allure-report --clean
+allure open allure-report
+---
+
 ## Environment Configuration
 
 Some examples use environment variables.
