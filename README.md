@@ -25,7 +25,7 @@ The examples focus on:
 ---
 
 ## Project Structure (High Level)
-
+```
 api_fall25rr/
 ├── data/
 │   ├── endpoints.py
