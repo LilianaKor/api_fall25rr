@@ -28,18 +28,29 @@ The examples focus on:
 
 api_fall25rr/
 ├── data/
-│   ├── endpoints.py               # API endpoints
-│   └── generator/                 # Test data generators
-├── modules/                       # Modules to prepare request bodies and URLs
+│   ├── endpoints.py
+│   └── generator/
+│       └── generator.py
+├── modules/
+│   ├── registered_module.py
+│   └── create_order_module.py
 ├── tests/
-│   ├── test_registered.py         # Registration API tests
-│   └── test_create_orders.py      # Create orders API tests
+│   ├── test_registered.py
+│   └── test_create_orders.py
 ├── utils/
-│   ├── assertions.py              # Assertion helpers
-│   ├── validate.py                # Schema validation helpers
-│   └── schemas/                   # Request/response schemas
-├── requirements.txt               # Python dependencies
+│   ├── assertions.py
+│   ├── validate.py
+│   └── schemas/
+│       ├── registered_schema/
+│       │   ├── request_schema.py
+│       │   └── response_schema.py
+│       └── create_orders_schema/
+│           ├── request_schema.py
+│           └── response_schema.py
+├── requirements.txt
+├── pytest.ini
 └── README.md
+
 
 ---
 
