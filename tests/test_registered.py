@@ -35,6 +35,10 @@ class TestRegistered:
             response=response,
             status_code=status.CREATED
         )
+        print(response.request.url)
+        print(response.request.body)
+        print(response.status_code)
+        print(response.json())
 
     def test_registered_v2(self):
         request_body = self.module.create_request_body(
@@ -71,6 +75,10 @@ class TestRegistered:
             response=response,
             status_code=status.CREATED
         )
+        print(response.request.url)
+        print(response.request.body)
+        print(response.status_code)
+        print(response.json())
 
     def test_registered_v4(self, create_endpoint):
         request_body = ctx.module.create_request_body(
