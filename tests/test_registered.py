@@ -1,3 +1,4 @@
+import allure
 import requests
 from data.endpoints import Endpoints
 from data.generator.generator import Generator
@@ -40,6 +41,36 @@ class TestRegistered:
         print(response.status_code)
         print(response.json())
 
+    import allure
+
+    def test_registered_version1(self):
+        with allure.step("Generate registered user data"):
+            user_info = next(self.generator.registered_data())
+
+        with allure.step("Prepare request body"):
+            request_body = self.module.prepare_data(
+                schema=RegisteredRequestSchema,
+                data=user_info
+            )
+
+        with allure.step("Send POST request"):
+            response = requests.post(
+                url=f"{self.endpoint.base_url}{self.endpoint.api_client_url}",
+                data=request_body
+            )
+
+        with allure.step("Validate response schema"):
+            self.validate.validate(
+                response=response,
+                schema=TokenResponseSchema
+            )
+
+        with allure.step("Check status code"):
+            self.assertion.assert_status_code(
+                response=response,
+                status_code=status.CREATED
+            )
+
     def test_registered_v2(self):
         request_body = self.module.create_request_body(
             schema=RegisteredRequestSchema,
@@ -78,7 +109,10 @@ class TestRegistered:
         print(response.request.url)
         print(response.request.body)
         print(response.status_code)
-        print(response.json())
+        print(response.json()) #The failure in version three was not caused by test data generation.
+#It happened because the test used a different URL construction mechanism, which relied on environment
+ # configuration instead of the explicit base URL. As a result, the API state was not isolated, and the test received
+    # a valid conflict response that did not match the expected success schema.'''
 
     def test_registered_v4(self, create_endpoint):
         request_body = ctx.module.create_request_body(
@@ -96,4 +130,25 @@ class TestRegistered:
         ctx.assertion.assert_status_code(
             response=response,
             status_code=status.CREATED
+        )
+
+    def test_registered_v5(self, create_endpoint):
+        request_body = self.module.create_request_body(
+            schema=RegisteredRequestSchema,
+            data_class_instance=next(self.generator.registered_data())
+        )
+
+        response = requests.post(
+            url=self.module.create_url(
+                create_endpoint,
+                self.endpoint.api_client_url
+            ),
+            data=request_body
+        )
+
+        assert response.status_code == status.CREATED, response.json()
+
+        self.validate.validate(
+            response=response,
+            schema=TokenResponseSchema
         )

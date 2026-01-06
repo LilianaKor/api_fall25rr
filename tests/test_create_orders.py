@@ -1,3 +1,4 @@
+import allure
 import requests
 from http import HTTPStatus
 from data.endpoints import Endpoints
@@ -29,3 +30,31 @@ class TestCreateOrders:
         )
         self.validate.validate(response, CreateOrderResponseSchema)
         self.assertion.assert_status_code(response, HTTPStatus.CREATED)
+
+    def test_create_orders1(self, create_endpoint, get_auth_token):
+        with allure.step("Generate test data for order creation"):
+            user_info = next(self.generator.create_order_data())
+
+        with allure.step("Prepare request body"):
+            request_body = self.module.create_request_body(
+                schema=CreateOrdesRequestSchema,
+                data_class_instance=user_info
+            )
+
+        with allure.step("Send POST request to create order"):
+            response = requests.post(
+                url=f"{self.endpoint.base_url}{self.endpoint.orders_url}",
+                data=request_body,
+                headers=get_auth_token
+            )
+
+        with allure.step("Validate response schema"):
+            self.validate.validate(response, CreateOrderResponseSchema)
+
+        with allure.step("Verify status code is 201 CREATED"):
+            self.assertion.assert_status_code(response, HTTPStatus.CREATED)
+
+        print(response.request.url)
+        print(response.request.body)
+        print(response.status_code)
+        print(response.json())
