@@ -25,21 +25,32 @@ The examples focus on:
 ---
 
 ## Project Structure (High Level)
-
-- `data/`dataclasses
-  - API endpoints
-  - data generators
-  - dataclasses for request payloads
-- `modules/`
-  - request body builders
-  - registered_module
-- `utils/`
-  - assertions
-  - schema validation
-  - logger
-- `tests/`
-  - API test examples
-  - pytest fixtures
+```
+api_fall25rr/
+├── data/
+│   ├── endpoints.py
+│   └── generator/
+│       └── generator.py
+├── modules/
+│   ├── registered_module.py
+│   └── create_order_module.py
+├── tests/
+│   ├── test_registered.py
+│   └── test_create_orders.py
+├── utils/
+│   ├── assertions.py
+│   ├── validate.py
+│   └── schemas/
+│       ├── registered_schema/
+│       │   ├── request_schema.py
+│       │   └── response_schema.py
+│       └── create_orders_schema/
+│           ├── request_schema.py
+│           └── response_schema.py
+├── requirements.txt
+├── pytest.ini
+└── README.md
+```
 
 ---
 
@@ -108,6 +119,26 @@ Examples should help quickly bootstrap new API automation projects
 No unnecessary abstractions.
 No hidden magic.
 Focus on clarity and reusability.
+
+## Run tests with Allure
+
+Generate Allure results:
+
+pytest --alluredir=allure-results
+
+
+Serve the Allure report in your browser:
+
+allure serve allure-results
+
+
+## Or generate the report without opening it automatically:
+
+```
+allure generate allure-results -o allure-report --clean
+allure open allure-report
+```
+---
 
 ## Environment Configuration
 
